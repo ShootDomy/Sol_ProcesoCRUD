@@ -227,5 +227,36 @@ namespace ProcesoCRUD.Presentacion
             this.EstadoBotonesPrincipales(false);
             txtNombre.Focus();
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            this.ListadoContactos(txtEditar.Text);
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvListado.Rows.Count > 0) {
+                string Rpta = "";
+                D_Contactos contacto = new D_Contactos();
+                vCon_codigo = Guid.Parse(Convert.ToString(dgvListado.CurrentRow.Cells["codigo"].Value));
+                Rpta = contacto.EliminarContacto(vCon_codigo);
+
+                if (Rpta == "OK")
+                {
+                    this.LimpiarTextos();
+                    this.EstadoTexto(false);
+                    this.EstadoBotonesProceso(false);
+                    this.EstadoBotonesPrincipales(true);
+                    this.ListadoContactos("%");
+
+                    MessageBox.Show("Los datos han sido  correctamente: ", "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show(Rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

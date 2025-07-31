@@ -93,5 +93,29 @@ namespace ProcesoCRUD.Datos
             }
             return Rpta;
         }
+
+        public string EliminarContacto(Guid vCon_uuid)
+        {
+            string Rpta = "";
+            string SentenciaSQL = "UPDATE public.contactos SET deleted_at = NOW() WHERE con_uuid = '" + vCon_uuid + "';";
+            NpgsqlConnection SqlCon = new NpgsqlConnection();
+            try
+            {
+                SqlCon = Conexion.GetInstacia().CrearConexion();
+                NpgsqlCommand Comando = new NpgsqlCommand(SentenciaSQL, SqlCon);
+                Comando.CommandType = CommandType.Text;
+                SqlCon.Open();
+                Rpta = Comando.ExecuteNonQuery() >= 1 ? "OK" : "No se pudo eliminar la información";
+            }
+            catch (Exception err)
+            {
+                Rpta = err.Message;
+            }
+            finally
+            {
+                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
+            }
+            return Rpta;
+        }
     }
 }

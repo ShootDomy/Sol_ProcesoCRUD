@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_Reportes" targetNamespace="http://tempuri.org/DS_Reportes.xsd" xmlns:mstns="http://tempuri.org/DS_Reportes.xsd" xmlns="http://tempuri.org/DS_Reportes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_Reportes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DS_Reportes" msprop:Generator_DataSetName="DS_Reportes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Listado_x0020_de_x0020_contacto" msprop:Generator_RowEvHandlerName="Listado_de_contactoRowChangeEventHandler" msprop:Generator_RowDeletedName="Listado_de_contactoRowDeleted" msprop:Generator_RowDeletingName="Listado_de_contactoRowDeleting" msprop:Generator_RowEvArgName="Listado_de_contactoRowChangeEvent" msprop:Generator_TablePropName="Listado_de_contacto" msprop:Generator_RowChangedName="Listado_de_contactoRowChanged" msprop:Generator_RowChangingName="Listado_de_contactoRowChanging" msprop:Generator_TableClassName="Listado_de_contactoDataTable" msprop:Generator_RowClassName="Listado_de_contactoRow" msprop:Generator_TableVarName="tableListado_de_contacto" msprop:Generator_UserTableName="Listado de contacto">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_UserColumnName="nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="telefono" msprop:Generator_ColumnPropNameInRow="telefono" msprop:Generator_ColumnPropNameInTable="telefonoColumn" msprop:Generator_ColumnVarNameInTable="columntelefono" msprop:Generator_UserColumnName="telefono" type="xs:string" minOccurs="0" />
+              <xs:element name="correo" msprop:Generator_ColumnPropNameInRow="correo" msprop:Generator_ColumnPropNameInTable="correoColumn" msprop:Generator_ColumnVarNameInTable="columncorreo" msprop:Generator_UserColumnName="correo" type="xs:string" minOccurs="0" />
+              <xs:element name="fecha_nac" msprop:Generator_ColumnPropNameInRow="fecha_nac" msprop:Generator_ColumnPropNameInTable="fecha_nacColumn" msprop:Generator_ColumnVarNameInTable="columnfecha_nac" msprop:Generator_UserColumnName="fecha_nac" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="cargo" msprop:Generator_ColumnPropNameInRow="cargo" msprop:Generator_ColumnPropNameInTable="cargoColumn" msprop:Generator_ColumnVarNameInTable="columncargo" msprop:Generator_UserColumnName="cargo" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
