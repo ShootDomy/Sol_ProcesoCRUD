@@ -66,5 +66,32 @@ namespace ProcesoCRUD.Datos
 
             return Rpta;
         }
+
+        public string ActualizarContacto(int nOpcion, Contactos contactos)
+        {
+            string Rpta = "";
+            string SentenciaSQL = "UPDATE public.contactos SET con_nombre = '" + contactos.Con_nombre + "', " +
+                "con_telefono = '" + contactos.Con_telefono + "', con_correo = '" + contactos.Con_correo + "', " +
+                "con_fecha_nac = '" + contactos.Con_fecha_nac + "', car_uuid = '" + contactos.Car_uuid + "' " +
+                "WHERE con_uuid = '" + contactos.Con_uuid + "';";
+            NpgsqlConnection SqlCon = new NpgsqlConnection();
+            try
+            {
+                SqlCon = Conexion.GetInstacia().CrearConexion();
+                NpgsqlCommand Comando = new NpgsqlCommand(SentenciaSQL, SqlCon);
+                Comando.CommandType = CommandType.Text;
+                SqlCon.Open();
+                Rpta = Comando.ExecuteNonQuery() >= 1 ? "OK" : "No se pudo actualizar la información";
+            }
+            catch (Exception err)
+            {
+                Rpta = err.Message;
+            }
+            finally
+            {
+                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
+            }
+            return Rpta;
+        }
     }
 }

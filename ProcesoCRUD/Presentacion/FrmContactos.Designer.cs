@@ -151,6 +151,7 @@
             this.btnActualizar.TabIndex = 1;
             this.btnActualizar.Text = "ACTUALIZAR";
             this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnNuevo
             // 
@@ -267,6 +268,7 @@
             this.dgvListado.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListado.Size = new System.Drawing.Size(1123, 305);
             this.dgvListado.TabIndex = 10;
+            this.dgvListado.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListado_CellEnter);
             // 
             // cbxCargo
             // 

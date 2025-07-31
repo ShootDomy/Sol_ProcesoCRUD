@@ -1,4 +1,5 @@
-﻿using ProcesoCRUD.Datos;
+﻿using Npgsql.Internal.TypeHandlers;
+using ProcesoCRUD.Datos;
 using ProcesoCRUD.Entidades;
 using System;
 using System.Collections.Generic;
@@ -113,6 +114,22 @@ namespace ProcesoCRUD.Presentacion
                 MessageBox.Show("Error al cargar los contactos: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void SeleccionarContacto()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(dgvListado.CurrentRow.Cells["codigo"].Value))) {
+                MessageBox.Show("Seleccione un registro valido", "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                txtNombre.Text = Convert.ToString(dgvListado.CurrentRow.Cells["nombre"].Value);
+                txtTelefono.Text = Convert.ToString(dgvListado.CurrentRow.Cells["telefono"].Value);
+                txtCorreo.Text = Convert.ToString(dgvListado.CurrentRow.Cells["correo"].Value);
+                dtpFechaNac.Value = Convert.ToDateTime(dgvListado.CurrentRow.Cells["fecha_nac"].Value);
+                vCon_codigo = Guid.Parse(Convert.ToString(dgvListado.CurrentRow.Cells["codigo"].Value));
+                cbxCargo.Text = Convert.ToString(dgvListado.CurrentRow.Cells["cargo"].Value);
+            }
+        }
         #endregion
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -163,7 +180,16 @@ namespace ProcesoCRUD.Presentacion
                 objContactos.Car_uuid = vCar_codigo;
 
                 D_Contactos contactos = new D_Contactos();
-                Rpta = contactos.GuardarContacto(nEstadoGuardar, objContactos);
+
+                if (nEstadoGuardar == 1) {
+                    Rpta = contactos.GuardarContacto(nEstadoGuardar, objContactos);
+                }
+                else if (nEstadoGuardar == 2)
+                {
+                    objContactos.Con_uuid = vCon_codigo;
+                    Rpta = contactos.ActualizarContacto(nEstadoGuardar, objContactos);
+                }
+                    
 
                 if (Rpta == "OK") {
                     this.LimpiarTextos();
@@ -171,11 +197,35 @@ namespace ProcesoCRUD.Presentacion
                     this.EstadoBotonesProceso(false);
                     this.EstadoBotonesPrincipales(true);
                     this.ListadoContactos("%");
-                    MessageBox.Show("Los datos han sido creados correctamente: ", "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (nEstadoGuardar == 1)
+                    {
+                        MessageBox.Show("Los datos han sido creados correctamente: ", "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (nEstadoGuardar == 2)
+                    {
+                        MessageBox.Show("Los datos han sido actualizados correctamente: ", "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    
                 } else {
                     MessageBox.Show(Rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void dgvListado_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            this.SeleccionarContacto();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            nEstadoGuardar = 2; // Atualizar registro
+            //this.LimpiarTextos();
+            this.EstadoTexto(true);
+            this.EstadoBotonesProceso(true);
+            this.EstadoBotonesPrincipales(false);
+            txtNombre.Focus();
         }
     }
 }
