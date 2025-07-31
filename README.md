@@ -1,4 +1,19 @@
 # 📇 CRUD de Contactos – C# + PostgreSQL
+![C#](https://img.shields.io/badge/C%23-%23239120.svg?&logo=c-sharp&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-%23336791.svg?&logo=postgresql&logoColor=white)
+![.NET](https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=white)
+![Visual Studio](https://img.shields.io/badge/IDE-Visual%20Studio-5C2D91?logo=visual-studio&logoColor=white)
+![Top Language](https://img.shields.io/github/languages/top/ShootDomy/Sol_ProcesoCRUD)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/ShootDomy/Sol_ProcesoCRUD)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/ShootDomy/Sol_ProcesoCRUD)
+![GitHub Commit Activity](https://img.shields.io/github/commit-activity/m/ShootDomy/Sol_ProcesoCRUD)
+![GitHub Languages Count](https://img.shields.io/github/languages/count/ShootDomy/Sol_ProcesoCRUD)
+![Project Status](https://img.shields.io/badge/status-en%20desarrollo-yellow)
+![GitHub contributors](https://img.shields.io/github/contributors/ShootDomy/Sol_ProcesoCRUD)
+![GitHub issues](https://img.shields.io/github/issues/ShootDomy/Sol_ProcesoCRUD)
+
+
+
 
 Este es un proyecto de ejemplo que implementa un sistema CRUD (Crear, Leer, Actualizar, Eliminar) de contactos utilizando C# (.NET), ademas de implementar una zona de reportes aplicando el filtro de la busqueda y PostgreSQL como base de datos.
 
