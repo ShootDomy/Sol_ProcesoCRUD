@@ -1,6 +1,7 @@
 ﻿using Npgsql.Internal.TypeHandlers;
 using ProcesoCRUD.Datos;
 using ProcesoCRUD.Entidades;
+using ProcesoCRUD.Presentacion.Reportes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -257,6 +258,13 @@ namespace ProcesoCRUD.Presentacion
                     MessageBox.Show(Rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte_Contactos frm_Reporte_Contactos = new Frm_Reporte_Contactos();
+            frm_Reporte_Contactos.txt01.Text = txtEditar.Text.Trim();
+            frm_Reporte_Contactos.ShowDialog();
         }
     }
 }
