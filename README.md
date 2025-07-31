@@ -1,5 +1,6 @@
 # 📇 CRUD de Contactos – C# + PostgreSQL
 ![C#](https://img.shields.io/badge/C%23-%23239120.svg?&logo=c-sharp&logoColor=white)
+![RDLC Reports](https://img.shields.io/badge/Report-RDLC-blue?logo=windows)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-%23336791.svg?&logo=postgresql&logoColor=white)
 ![.NET](https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=white)
 ![Visual Studio](https://img.shields.io/badge/IDE-Visual%20Studio-5C2D91?logo=visual-studio&logoColor=white)
@@ -110,15 +111,27 @@ git clone https://github.com/ShootDomy/Sol_ProcesoCRUD.git
 4. Configura la cadena de conexión a PostgreSQL en el archivo de configuración (app.config o appsettings.json).
 5. Ejecuta el proyecto desde Visual Studio.
 
+## 📊 Generación de Reportes
+
+Este proyecto incluye generación de reportes utilizando **Microsoft RDLC (Report Definition Language Client-side)** a través del paquete:
+Los reportes permiten visualizar los contactos registrados de forma estructurada y exportarlos si se desea.
+
+> 🧩 Asegúrate de tener instalado el diseñador RDLC en Visual Studio para poder editar y previsualizar los reportes. Puedes instalarlo desde el **Visual Studio Marketplace**:
+[Microsoft RDLC Report Designer](https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftReportProjectsforVisualStudio)
+
 ## 📸 Capturas de pantalla
+- Principal
 <img width="1426" height="677" alt="Image" src="https://github.com/user-attachments/assets/67a7cfb9-56d0-4a98-9eb4-023fda5ee1c3" />
+- Reportes
+<img width="1279" height="677" alt="image" src="https://github.com/user-attachments/assets/da9e8738-1323-48c9-b07e-2c210cf1946d" />
 
 ## 👤 Autor
 Este proyecto fue creado por **Domenica Vintimilla**.
+💻 Desarrolladora Backend  
 
-- **Correo**: [canizaresdomenica4@gmail.com](mailto:canizaresdomenica4@gmail.com)
-- **GitHub**: [https://github.com/ShootDomy](https://github.com/ShootDomy)
-- **LinkedIn**: [https://www.linkedin.com/in/domenica-vintimilla-24a735245/](https://www.linkedin.com/in/domenica-vintimilla-24a735245/)
+- 📧 [canizaresdomenica4@gmail.com](mailto:canizaresdomenica4@gmail.com)  
+- 🐙 [GitHub](https://github.com/ShootDomy)  
+- 💼 [LinkedIn](https://www.linkedin.com/in/domenica-vintimilla-24a735245/)
 
 
 
