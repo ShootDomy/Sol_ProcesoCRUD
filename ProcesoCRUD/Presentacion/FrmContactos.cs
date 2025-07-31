@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProcesoCRUD.Datos;
+using ProcesoCRUD.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,6 +41,7 @@ namespace ProcesoCRUD.Presentacion
             txtTelefono.Enabled = lEstado;
             txtCorreo.Enabled = lEstado;
             dtpFechaNac.Enabled = lEstado;
+            cbxCargo.Enabled = lEstado;
         }
 
         private void EstadoBotonesProceso(bool lEstado)
@@ -54,6 +57,61 @@ namespace ProcesoCRUD.Presentacion
             btnEliminar.Enabled = lEstado;
             btnReporte.Enabled = lEstado;
             //btnSalir.Enabled = lEstado;
+        }
+
+        private void ListadoCargos()
+        {
+            try { 
+                D_cargos objCargos = new D_cargos();
+                cbxCargo.DataSource = objCargos.ListadoCargos();
+                cbxCargo.ValueMember = "car_uuid";
+                cbxCargo.DisplayMember = "car_descripcion";
+
+            } catch (Exception err)
+            {
+                MessageBox.Show("Error al cargar los cargos: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FormatoContactos()
+        {
+            try
+            {
+                dgvListado.Columns[0].Visible = false; // Ocultar columna de codigo
+
+                dgvListado.Columns[1].Width = 130; // Ajustar ancho de columna Nombre
+                dgvListado.Columns[1].HeaderText = "Nombre";
+
+                dgvListado.Columns[2].Width = 100;
+                dgvListado.Columns[2].HeaderText = "Telefono";
+
+                dgvListado.Columns[3].Width = 150;
+                dgvListado.Columns[3].HeaderText = "Correo";
+
+                dgvListado.Columns[4].Width = 130;
+                dgvListado.Columns[4].HeaderText = "Fecha Nacimiento";
+
+                dgvListado.Columns[5].Width = 150;
+                dgvListado.Columns[5].HeaderText = "Cargo";
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Error al formatear el listado de contactos: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ListadoContactos(string cTexto)
+        {
+            try
+            {
+                D_Contactos objContactos = new D_Contactos();
+                dgvListado.DataSource = objContactos.ListadoContactos(cTexto);
+                this.FormatoContactos();    
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Error al cargar los contactos: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
@@ -80,6 +138,44 @@ namespace ProcesoCRUD.Presentacion
             this.EstadoBotonesPrincipales(true);
         }
 
-      
+        private void FrmContactos_Load(object sender, EventArgs e)
+        {
+            this.ListadoCargos();
+            this.ListadoContactos("%");
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            // VALIDACION DE CAMPOS OBLIGATORIOS
+            if (txtNombre.Text ==string.Empty || cbxCargo.Text==string.Empty) 
+            {
+                MessageBox.Show("Faltan campos requeridos: ", "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
+            else { 
+                string Rpta = "";
+                vCar_codigo = cbxCargo.SelectedValue != null ? Guid.Parse(cbxCargo.SelectedValue.ToString()) : Guid.Empty;
+                Contactos objContactos = new Contactos();
+                //objContactos.Con_uuid = vCon_codigo;
+                objContactos.Con_nombre = txtNombre.Text.Trim();
+                objContactos.Con_telefono = txtTelefono.Text.Trim();
+                objContactos.Con_correo = txtCorreo.Text.Trim();
+                objContactos.Con_fecha_nac = dtpFechaNac.Value.ToString("yyyy-MM-dd");
+                objContactos.Car_uuid = vCar_codigo;
+
+                D_Contactos contactos = new D_Contactos();
+                Rpta = contactos.GuardarContacto(nEstadoGuardar, objContactos);
+
+                if (Rpta == "OK") {
+                    this.LimpiarTextos();
+                    this.EstadoTexto(false);
+                    this.EstadoBotonesProceso(false);
+                    this.EstadoBotonesPrincipales(true);
+                    this.ListadoContactos("%");
+                    MessageBox.Show("Los datos han sido creados correctamente: ", "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else {
+                    MessageBox.Show(Rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
